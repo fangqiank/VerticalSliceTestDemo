@@ -7,7 +7,7 @@ namespace VerticalSliceDemo.Tests
     public class SliceIndependenceTests
     {
         [Fact]
-        public void Slices_should_not_reference_other_slices()
+        public void Orders_slice_should_not_reference_shipments()
         {
             var assembly = Assembly.GetAssembly(typeof(Program));
 
@@ -16,7 +16,23 @@ namespace VerticalSliceDemo.Tests
                 .That()
                 .ResideInNamespace("VerticalSliceDemo.Features.Orders")
                 .ShouldNot()
-                .HaveDependencyOn("VerticalSliceDemo.Features.Shipments")
+                .HaveDependencyOn("VerticalSliceDemo.Features.Shipmemts")
+                .GetResult();
+
+            result.IsSuccessful.Should().BeTrue();
+        }
+
+        [Fact]
+        public void Shipments_slice_should_not_reference_orders()
+        {
+            var assembly = Assembly.GetAssembly(typeof(Program));
+
+            var result = Types
+                .InAssembly(assembly)
+                .That()
+                .ResideInNamespace("VerticalSliceDemo.Features.Shipmemts")
+                .ShouldNot()
+                .HaveDependencyOn("VerticalSliceDemo.Features.Orders")
                 .GetResult();
 
             result.IsSuccessful.Should().BeTrue();

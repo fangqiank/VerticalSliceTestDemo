@@ -15,10 +15,10 @@
                 ? PremiumDiscountRate 
                 : RegularDiscountRate;
 
-            var discount = subtotal * (1 - discountRate);
-            var tax = discount * TaxRate;
+            var discountedSubtotal = subtotal * (1 - discountRate);
+            var tax = discountedSubtotal * TaxRate;
 
-            return Math.Round(discount + tax, 2);
+            return Math.Round(discountedSubtotal + tax, 2);
         }
     }
 }

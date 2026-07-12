@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Npgsql;
 using VerticalSliceDemo.Domains;
 using VerticalSliceDemo.Infrastructure;
 
@@ -41,7 +42,14 @@ namespace VerticalSliceDemo.Features.Shipmemts
                 };
 
                 db.Shipments.Add(shipment);
-                await db.SaveChangesAsync();
+                try
+                {
+                    await db.SaveChangesAsync();
+                }
+                catch (DbUpdateException ex) when (ex.InnerException is PostgresException { SqlState: "23505" })
+                {
+                    return Results.Conflict($"Shipment already exists for order {request.OrderId}");
+                }
 
                 return Results.Created($"/shipments/{shipment.Id}", new CreateShipmentResponse(
                     shipment.Id, shipment.OrderId, shipment.Address, shipment.Status));

@@ -13,6 +13,31 @@ namespace VerticalSliceDemo.Features.Orders
                 AppDbContext db,
                 OrderPricingService pricingService) =>
             {
+                if (request.Items is null || request.Items.Count == 0)
+                {
+                    return Results.ValidationProblem(new Dictionary<string, string[]>
+                    {
+                        { "Items", new[] { "At least one item is required" } }
+                    });
+                }
+
+                var errors = new Dictionary<string, string[]>();
+
+                if (string.IsNullOrWhiteSpace(request.CustomerName))
+                    errors["CustomerName"] = new[] { "CustomerName is required" };
+
+                for (var i = 0; i < request.Items.Count; i++)
+                {
+                    var item = request.Items[i];
+                    if (item.Quantity <= 0)
+                        errors[$"Items[{i}].Quantity"] = new[] { "Quantity must be greater than 0" };
+                    if (item.UnitPrice <= 0)
+                        errors[$"Items[{i}].UnitPrice"] = new[] { "UnitPrice must be greater than 0" };
+                }
+
+                if (errors.Count > 0)
+                    return Results.ValidationProblem(errors);
+
                 var items = request.Items.Select(i => new OrderItem
                 {
                     Id = Guid.NewGuid(),

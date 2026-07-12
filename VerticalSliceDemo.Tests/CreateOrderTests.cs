@@ -44,8 +44,9 @@ namespace VerticalSliceDemo.Tests
             // discounted = 1006.9715
             // 8% tax = 80.55772
             // total = 1087.52922 ≈ 1087.53
-            order.TotalAmount.Should().BeGreaterThan(0);
-            order.TotalAmount.Should().BeLessThan(1100m); // 粗略检查
+            // subtotal = 999.99 + (2 * 29.99) = 1059.97
+            // 5% discount -> 1006.9715, +8% tax -> 1087.52922, rounded = 1087.53
+            order.TotalAmount.Should().Be(1087.53m);
 
             // 验证持久化
             using var scope = api.Services.CreateScope();

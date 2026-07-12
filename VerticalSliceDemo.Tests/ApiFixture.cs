@@ -15,8 +15,7 @@ namespace VerticalSliceDemo.Tests
 
         public ApiFixture()
         {
-            _dbContainer = new PostgreSqlBuilder()
-                .WithImage("postgres:17-alpine")
+            _dbContainer = new PostgreSqlBuilder("postgres:17-alpine")
                 .WithDatabase("verticalslice_test")
                 .WithUsername("test")
                 .WithPassword("test")
@@ -24,11 +23,15 @@ namespace VerticalSliceDemo.Tests
                 .Build();
         }
 
-        public async Task DisposeAsync()
+        public override async ValueTask DisposeAsync()
         {
             await _dbContainer.DisposeAsync();
             await base.DisposeAsync();
         }
+
+        // xunit's IAsyncLifetime.DisposeAsync() returns Task; delegate to the real
+        // (IAsyncDisposable) disposal so both call sites tear down the container.
+        Task IAsyncLifetime.DisposeAsync() => DisposeAsync().AsTask();
 
         public async Task ResetAsync()
         {
