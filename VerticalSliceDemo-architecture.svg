@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" width="1200" height="760">
+  <defs>
+    <!-- Gradient Definitions -->
+    <linearGradient id="greenGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#22c55e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#16a34a;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="orangeGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#f97316;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ea580c;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="blueGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2563eb;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="purpleGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#a855f7;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="skyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#0ea5e9;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0284c7;stop-opacity:1" />
+    </linearGradient>
+
+    <!-- Arrow Markers -->
+    <marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#22c55e"/>
+    </marker>
+    <marker id="arrowOrange" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#f97316"/>
+    </marker>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#3b82f6"/>
+    </marker>
+    <marker id="arrowPurple" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#a855f7"/>
+    </marker>
+    <marker id="arrowSky" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#0ea5e9"/>
+    </marker>
+  </defs>
+
+  <style>
+    .flow-line-green { stroke-dasharray: 8, 4; animation: dash-flow-green 0.5s linear infinite; }
+    .flow-line-orange { stroke-dasharray: 8, 4; animation: dash-flow-orange 0.5s linear infinite; }
+    .flow-line-blue { stroke-dasharray: 8, 4; animation: dash-flow-blue 0.5s linear infinite; }
+    .flow-line-purple { stroke-dasharray: 8, 4; animation: dash-flow-purple 0.5s linear infinite; }
+    .flow-line-sky { stroke-dasharray: 8, 4; animation: dash-flow-sky 0.5s linear infinite; }
+    @keyframes dash-flow-green { to { stroke-dashoffset: -12; } }
+    @keyframes dash-flow-orange { to { stroke-dashoffset: -12; } }
+    @keyframes dash-flow-blue { to { stroke-dashoffset: -12; } }
+    @keyframes dash-flow-purple { to { stroke-dashoffset: -12; } }
+    @keyframes dash-flow-sky { to { stroke-dashoffset: -12; } }
+  </style>
+
+  <!-- White background -->
+  <rect width="1200" height="760" fill="#ffffff"/>
+
+  <!-- Grid -->
+  <g opacity="0.13">
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#94a3b8" stroke-width="0.5"/>
+    </pattern>
+    <rect width="1200" height="760" fill="url(#grid)"/>
+  </g>
+
+  <!-- Title Area -->
+  <text x="600" y="44" text-anchor="middle" font-family="Arial, sans-serif" font-size="26" font-weight="bold" fill="#1e293b">VerticalSliceDemo 系统架构图</text>
+  <text x="600" y="70" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#64748b">Vertical Slice Architecture · .NET 10 · Minimal APIs · EF Core + PostgreSQL</text>
+
+  <!-- ============ CARDS (left → right flow) ============ -->
+
+  <!-- Card 1: Client (sky) -->
+  <g transform="translate(25,120)">
+    <rect x="0" y="0" width="205" height="200" rx="12" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="2"/>
+    <rect x="0" y="0" width="205" height="35" rx="12" fill="url(#skyGradient)"/>
+    <rect x="0" y="20" width="205" height="15" fill="url(#skyGradient)"/>
+    <text x="102.5" y="23" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#ffffff">客户端 / Client</text>
+    <g transform="translate(15,48)">
+      <rect width="175" height="60" rx="6" fill="#ffffff" stroke="#bae6fd" stroke-width="1"/>
+      <text x="87.5" y="20" text-anchor="middle" font-family="monospace" font-size="11" font-weight="bold" fill="#0284c7">HTTP Client</text>
+      <text x="87.5" y="36" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#64748b">POST /orders</text>
+      <text x="87.5" y="50" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#94a3b8">POST /shipments</text>
+    </g>
+    <g transform="translate(15,120)">
+      <rect width="175" height="60" rx="6" fill="#ffffff" stroke="#bae6fd" stroke-width="1"/>
+      <text x="87.5" y="20" text-anchor="middle" font-family="monospace" font-size="11" font-weight="bold" fill="#0284c7">Scalar API UI</text>
+      <text x="87.5" y="36" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#64748b">/scalar</text>
+      <text x="87.5" y="50" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#94a3b8">Interactive Docs</text>
+    </g>
+  </g>
+
+  <!-- Card 2: Features / API Layer (purple) -->
+  <g transform="translate(260,120)">
+    <rect x="0" y="0" width="205" height="200" rx="12" fill="#faf5ff" stroke="#a855f7" stroke-width="2"/>
+    <rect x="0" y="0" width="205" height="35" rx="12" fill="url(#purpleGradient)"/>
+    <rect x="0" y="20" width="205" height="15" fill="url(#purpleGradient)"/>
+    <text x="102.5" y="23" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#ffffff">Features / 垂直切片</text>
+    <g transform="translate(15,48)">
+      <rect width="175" height="60" rx="6" fill="#ffffff" stroke="#e9d5ff" stroke-width="1"/>
+      <text x="87.5" y="20" text-anchor="middle" font-family="monospace" font-size="11" font-weight="bold" fill="#7c3aed">Orders Slice</text>
+      <text x="87.5" y="36" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#64748b">CreateOrderEndpoint</text>
+      <text x="87.5" y="50" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#94a3b8">POST /orders</text>
+    </g>
+    <g transform="translate(15,120)">
+      <rect width="175" height="60" rx="6" fill="#ffffff" stroke="#e9d5ff" stroke-width="1"/>
+      <text x="87.5" y="20" text-anchor="middle" font-family="monospace" font-size="11" font-weight="bold" fill="#7c3aed">Shipments Slice</text>
+      <text x="87.5" y="36" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#64748b">CreateShipmentEndpoint</text>
+      <text x="87.5" y="50" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#94a3b8">POST /shipments</text>
+    </g>
+  </g>
+
+  <!-- Card 3: Domain (orange) -->
+  <g transform="translate(495,120)">
+    <rect x="0" y="0" width="205" height="200" rx="12" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
+    <rect x="0" y="0" width="205" height="35" rx="12" fill="url(#orangeGradient)"/>
+    <rect x="0" y="20" width="205" height="15" fill="url(#orangeGradient)"/>
+    <text x="102.5" y="23" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#ffffff">Domains / 领域层</text>
+    <g transform="translate(15,48)">
+      <rect width="175" height="42" rx="6" fill="#ffffff" stroke="#fed7aa" stroke-width="1"/>
+      <text x="87.5" y="17" text-anchor="middle" font-family="monospace" font-size="11" font-weight="bold" fill="#ea580c">OrderPricingService</text>
+      <text x="87.5" y="32" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#64748b">Discount + Tax</text>
+    </g>
+    <g transform="translate(15,98)">
+      <rect width="175" height="42" rx="6" fill="#ffffff" stroke="#fed7aa" stroke-width="1"/>
+      <text x="87.5" y="17" text-anchor="middle" font-family="monospace" font-size="11" font-weight="bold" fill="#ea580c">Entities</text>
+      <text x="87.5" y="32" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#64748b">Order · OrderItem · Shipment</text>
+    </g>
+    <g transform="translate(15,148)">
+      <rect width="175" height="42" rx="6" fill="#ffffff" stroke="#fed7aa" stroke-width="1"/>
+      <text x="87.5" y="17" text-anchor="middle" font-family="monospace" font-size="11" font-weight="bold" fill="#ea580c">Enums</text>
+      <text x="87.5" y="32" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#64748b">OrderStatus · ShipmentStatus</text>
+    </g>
+  </g>
+
+  <!-- Card 4: Infrastructure (blue) -->
+  <g transform="translate(730,120)">
+    <rect x="0" y="0" width="205" height="200" rx="12" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+    <rect x="0" y="0" width="205" height="35" rx="12" fill="url(#blueGradient)"/>
+    <rect x="0" y="20" width="205" height="15" fill="url(#blueGradient)"/>
+    <text x="102.5" y="23" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#ffffff">Infrastructure / 基础设施</text>
+    <g transform="translate(15,48)">
+      <rect width="175" height="60" rx="6" fill="#ffffff" stroke="#bfdbfe" stroke-width="1"/>
+      <text x="87.5" y="20" text-anchor="middle" font-family="monospace" font-size="11" font-weight="bold" fill="#2563eb">AppDbContext</text>
+      <text x="87.5" y="36" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#64748b">EF Core · DbSet&lt;T&gt;</text>
+      <text x="87.5" y="50" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#94a3b8">Orders · Shipments</text>
+    </g>
+    <g transform="translate(15,120)">
+      <rect width="175" height="60" rx="6" fill="#ffffff" stroke="#bfdbfe" stroke-width="1"/>
+      <text x="87.5" y="20" text-anchor="middle" font-family="monospace" font-size="11" font-weight="bold" fill="#2563eb">Fluent Config</text>
+      <text x="87.5" y="36" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#64748b">Npgsql · OnModelCreating</text>
+      <text x="87.5" y="50" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#94a3b8">decimal(18,2) · unique idx</text>
+    </g>
+  </g>
+
+  <!-- Card 5: Database (green) -->
+  <g transform="translate(965,120)">
+    <rect x="0" y="0" width="205" height="200" rx="12" fill="#f0fdf4" stroke="#22c55e" stroke-width="2"/>
+    <rect x="0" y="0" width="205" height="35" rx="12" fill="url(#greenGradient)"/>
+    <rect x="0" y="20" width="205" height="15" fill="url(#greenGradient)"/>
+    <text x="102.5" y="23" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#ffffff">Database / 数据库</text>
+    <g transform="translate(15,48)">
+      <rect width="175" height="60" rx="6" fill="#ffffff" stroke="#bbf7d0" stroke-width="1"/>
+      <text x="87.5" y="20" text-anchor="middle" font-family="monospace" font-size="11" font-weight="bold" fill="#16a34a">PostgreSQL 17</text>
+      <text x="87.5" y="36" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#64748b">via Npgsql</text>
+      <text x="87.5" y="50" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#94a3b8">enums stored as string</text>
+    </g>
+    <g transform="translate(15,120)">
+      <rect width="175" height="60" rx="6" fill="#ffffff" stroke="#bbf7d0" stroke-width="1"/>
+      <text x="87.5" y="20" text-anchor="middle" font-family="monospace" font-size="11" font-weight="bold" fill="#16a34a">Tables</text>
+      <text x="87.5" y="36" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#64748b">Orders · OrderItems</text>
+      <text x="87.5" y="50" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#94a3b8">Shipments</text>
+    </g>
+  </g>
+
+  <!-- ============ FLOW LINES (double layer, animated) ============ -->
+
+  <!-- Client → API : HTTP request (sky) -->
+  <path d="M230 220 L258 220" stroke="#bae6fd" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <path d="M230 220 L258 220" class="flow-line-sky" stroke="#0ea5e9" stroke-width="3" fill="none" marker-end="url(#arrowSky)" stroke-linecap="round"/>
+  <text x="244" y="210" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#0284c7">HTTP</text>
+
+  <!-- API → Domain : invoke pricing (orange) -->
+  <path d="M465 220 L493 220" stroke="#fed7aa" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <path d="M465 220 L493 220" class="flow-line-orange" stroke="#f97316" stroke-width="3" fill="none" marker-end="url(#arrowOrange)" stroke-linecap="round"/>
+  <text x="479" y="210" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#ea580c">计价</text>
+
+  <!-- API → Infrastructure : persist (blue, routed below to bypass Domain) -->
+  <path d="M362.5 320 L362.5 350 L832.5 350 L832.5 321" stroke="#bfdbfe" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <path d="M362.5 320 L362.5 350 L832.5 350 L832.5 321" class="flow-line-blue" stroke="#3b82f6" stroke-width="3" fill="none" marker-end="url(#arrowBlue)" stroke-linecap="round"/>
+  <text x="597.5" y="343" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#2563eb">持久化 Persist · SaveChangesAsync</text>
+
+  <!-- Infrastructure → Database : SQL (green) -->
+  <path d="M935 220 L963 220" stroke="#bbf7d0" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <path d="M935 220 L963 220" class="flow-line-green" stroke="#22c55e" stroke-width="3" fill="none" marker-end="url(#arrowGreen)" stroke-linecap="round"/>
+  <text x="949" y="210" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#16a34a">SQL</text>
+
+  <!-- ============ BOTTOM PANELS ============ -->
+
+  <!-- Request Flow panel -->
+  <g transform="translate(25,385)">
+    <rect x="0" y="0" width="560" height="255" rx="10" fill="#f8fafc" stroke="#e2e8f0" stroke-width="2"/>
+    <text x="280" y="28" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b">请求流程 / Request Flow &#183; POST /orders</text>
+
+    <g transform="translate(25,52)">
+      <circle cx="8" cy="8" r="6" fill="#0ea5e9"/>
+      <text x="22" y="12" font-family="Arial, sans-serif" font-size="11" fill="#1e293b">1. 客户端发送 POST /orders（JSON 请求体）</text>
+    </g>
+    <g transform="translate(25,85)">
+      <circle cx="8" cy="8" r="6" fill="#a855f7"/>
+      <text x="22" y="12" font-family="Arial, sans-serif" font-size="11" fill="#1e293b">2. Endpoint 映射 DTO → OrderItem 列表</text>
+    </g>
+    <g transform="translate(25,118)">
+      <circle cx="8" cy="8" r="6" fill="#f97316"/>
+      <text x="22" y="12" font-family="Arial, sans-serif" font-size="11" fill="#1e293b">3. OrderPricingService：小计 → 折扣 → +8% 税</text>
+    </g>
+    <g transform="translate(25,151)">
+      <circle cx="8" cy="8" r="6" fill="#3b82f6"/>
+      <text x="22" y="12" font-family="Arial, sans-serif" font-size="11" fill="#1e293b">4. AppDbContext.Add + SaveChangesAsync（EF Core）</text>
+    </g>
+    <g transform="translate(25,184)">
+      <circle cx="8" cy="8" r="6" fill="#22c55e"/>
+      <text x="22" y="12" font-family="Arial, sans-serif" font-size="11" fill="#1e293b">5. Npgsql 写入 PostgreSQL（Orders / OrderItems）</text>
+    </g>
+    <g transform="translate(25,217)">
+      <circle cx="8" cy="8" r="6" fill="#0ea5e9"/>
+      <text x="22" y="12" font-family="Arial, sans-serif" font-size="11" fill="#1e293b">6. 返回 201 Created + CreateOrderResponse</text>
+    </g>
+  </g>
+
+  <!-- DI & API Docs panel -->
+  <g transform="translate(610,385)">
+    <rect x="0" y="0" width="565" height="255" rx="10" fill="#f8fafc" stroke="#e2e8f0" stroke-width="2"/>
+    <text x="282.5" y="28" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b">依赖注入 &amp; API 文档 / DI &amp; API Docs</text>
+
+    <text x="20" y="54" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#7c3aed">DI 容器 · Program.cs</text>
+    <text x="30" y="74" font-family="monospace" font-size="11" fill="#334155">builder.Services.AddOpenApi();</text>
+    <text x="30" y="92" font-family="monospace" font-size="11" fill="#334155">AddDbContext&lt;AppDbContext&gt;()  // Npgsql</text>
+    <text x="30" y="110" font-family="monospace" font-size="11" fill="#334155">AddScoped&lt;OrderPricingService&gt;()</text>
+
+    <text x="20" y="140" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#0284c7">API 文档 · API Documentation</text>
+    <text x="30" y="160" font-family="monospace" font-size="11" fill="#334155">/openapi/v1.json  (Development only)</text>
+    <text x="30" y="178" font-family="monospace" font-size="11" fill="#334155">/scalar  →  MapScalarApiReference()</text>
+
+    <text x="20" y="206" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#16a34a">技术栈 · Tech Stack</text>
+    <text x="30" y="226" font-family="Arial, sans-serif" font-size="11" fill="#334155">.NET 10 · Minimal APIs · EF Core 10 · Npgsql · PostgreSQL 17</text>
+    <text x="30" y="243" font-family="Arial, sans-serif" font-size="10" fill="#64748b">连接串 ConnectionStrings:Database（user secrets / env，不在 appsettings 中）</text>
+  </g>
+
+  <!-- Legend -->
+  <g transform="translate(25,660)">
+    <rect x="0" y="0" width="560" height="60" rx="8" fill="#f8fafc" stroke="#e2e8f0" stroke-width="2"/>
+    <text x="280" y="20" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#64748b">图例 / LEGEND</text>
+    <rect x="25" y="34" width="22" height="14" rx="3" fill="#0ea5e9"/>
+    <text x="53" y="45" font-family="Arial, sans-serif" font-size="10" fill="#1e293b">Client 客户端</text>
+    <rect x="150" y="34" width="22" height="14" rx="3" fill="#a855f7"/>
+    <text x="178" y="45" font-family="Arial, sans-serif" font-size="10" fill="#1e293b">API 接口层</text>
+    <rect x="265" y="34" width="22" height="14" rx="3" fill="#f97316"/>
+    <text x="293" y="45" font-family="Arial, sans-serif" font-size="10" fill="#1e293b">Domain 领域</text>
+    <rect x="380" y="34" width="22" height="14" rx="3" fill="#3b82f6"/>
+    <text x="408" y="45" font-family="Arial, sans-serif" font-size="10" fill="#1e293b">Infra 基础设施</text>
+    <rect x="495" y="34" width="22" height="14" rx="3" fill="#22c55e"/>
+    <text x="523" y="45" font-family="Arial, sans-serif" font-size="10" fill="#1e293b">DB 数据库</text>
+  </g>
+
+  <!-- Architecture constraint note -->
+  <g transform="translate(610,660)">
+    <rect x="0" y="0" width="565" height="60" rx="8" fill="#f8fafc" stroke="#e2e8f0" stroke-width="2"/>
+    <text x="282.5" y="20" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#64748b">架构约束 / Architecture Rules</text>
+    <text x="20" y="40" font-family="Arial, sans-serif" font-size="10" fill="#1e293b">• 领域层不依赖数据访问（Domain → 无 DB）</text>
+    <text x="20" y="54" font-family="Arial, sans-serif" font-size="10" fill="#1e293b">• 每个 Feature 切片自包含：DTO + Endpoint + 聚合器（Map{Feature}Endpoints）</text>
+  </g>
+
+</svg>

@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="VerticalSliceDemo.Tests/VerticalSliceDemo.Tests.csproj" />
+  <Project Path="VerticalSliceDemo/VerticalSliceDemo.csproj" />
+</Solution>
