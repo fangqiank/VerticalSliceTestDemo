@@ -1,10 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Npgsql;
 using VerticalSliceDemo.Domains;
 using VerticalSliceDemo.Infrastructure;
 
-namespace VerticalSliceDemo.Features.Shipmemts
+namespace VerticalSliceDemo.Features.Shipments
 {
     public static class CreateShipmentEndpoint
     {
@@ -18,13 +18,16 @@ namespace VerticalSliceDemo.Features.Shipmemts
                 {
                     return Results.ValidationProblem(new Dictionary<string, string[]>
                     {
-                        { "Address", new[] { "Address is required" } }
+                        { "Address", ["Address is required"] }
                     });
                 }
 
-                var orderExists = await db.Orders.AnyAsync(o => o.Id == request.OrderId);
-                if (!orderExists)
+                var order = await db.Orders.FirstOrDefaultAsync(o => o.Id == request.OrderId);
+                if (order is null)
                     return Results.NotFound($"Order {request.OrderId} not found");
+
+                if (order.Status is OrderStatus.Cancelled or OrderStatus.Shipped or OrderStatus.Delivered)
+                    return Results.Conflict($"Order {request.OrderId} is not eligible for shipment");
 
                 var existingShipment = await db.Shipments
                     .AnyAsync(s => s.OrderId == request.OrderId);

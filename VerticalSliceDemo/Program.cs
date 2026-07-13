@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
 using VerticalSliceDemo.Domains;
 using VerticalSliceDemo.Features.Orders;
-using VerticalSliceDemo.Features.Shipmemts;
+using VerticalSliceDemo.Features.Shipments;
 using VerticalSliceDemo.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);

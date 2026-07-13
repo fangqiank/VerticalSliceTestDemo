@@ -1,4 +1,4 @@
-﻿namespace VerticalSliceDemo.Domains
+namespace VerticalSliceDemo.Domains
 {
     public class OrderPricingService
     {
@@ -11,7 +11,7 @@
         {
             var subtotal = items.Sum(item => item.Quantity * item.UnitPrice);
             
-            var discountRate = isPremiumCustomer && subtotal > PremiumThreshold 
+            var discountRate = isPremiumCustomer && subtotal >= PremiumThreshold 
                 ? PremiumDiscountRate 
                 : RegularDiscountRate;
 

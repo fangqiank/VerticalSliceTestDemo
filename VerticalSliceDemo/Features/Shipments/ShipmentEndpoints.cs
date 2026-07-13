@@ -1,4 +1,4 @@
-﻿namespace VerticalSliceDemo.Features.Shipmemts
+namespace VerticalSliceDemo.Features.Shipments
 {
     public static class ShipmentEndpoints
     {

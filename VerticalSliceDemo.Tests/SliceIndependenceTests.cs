@@ -1,4 +1,4 @@
-﻿using FluentAssertions;
+using FluentAssertions;
 using NetArchTest.Rules;
 using System.Reflection;
 
@@ -16,7 +16,7 @@ namespace VerticalSliceDemo.Tests
                 .That()
                 .ResideInNamespace("VerticalSliceDemo.Features.Orders")
                 .ShouldNot()
-                .HaveDependencyOn("VerticalSliceDemo.Features.Shipmemts")
+                .HaveDependencyOn("VerticalSliceDemo.Features.Shipments")
                 .GetResult();
 
             result.IsSuccessful.Should().BeTrue();
@@ -30,7 +30,7 @@ namespace VerticalSliceDemo.Tests
             var result = Types
                 .InAssembly(assembly)
                 .That()
-                .ResideInNamespace("VerticalSliceDemo.Features.Shipmemts")
+                .ResideInNamespace("VerticalSliceDemo.Features.Shipments")
                 .ShouldNot()
                 .HaveDependencyOn("VerticalSliceDemo.Features.Orders")
                 .GetResult();
@@ -46,7 +46,7 @@ namespace VerticalSliceDemo.Tests
             var result = Types
                 .InAssembly(assembly)
                 .That()
-                .ResideInNamespace("VerticalSliceDemo.Domain")
+                .ResideInNamespace("VerticalSliceDemo.Domains")
                 .ShouldNot()
                 .HaveDependencyOn("VerticalSliceDemo.Features")
                 .GetResult();

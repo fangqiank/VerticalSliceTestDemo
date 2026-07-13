@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using VerticalSliceDemo.Domains;
 using VerticalSliceDemo.Infrastructure;
 
@@ -13,7 +13,7 @@ namespace VerticalSliceDemo.Features.Orders
                 AppDbContext db,
                 OrderPricingService pricingService) =>
             {
-                if (request.Items is null || request.Items.Count == 0)
+                if (request.Items.Count == 0)
                 {
                     return Results.ValidationProblem(new Dictionary<string, string[]>
                     {
@@ -31,6 +31,8 @@ namespace VerticalSliceDemo.Features.Orders
                     var item = request.Items[i];
                     if (item.Quantity <= 0)
                         errors[$"Items[{i}].Quantity"] = new[] { "Quantity must be greater than 0" };
+                    if (string.IsNullOrWhiteSpace(item.ProductName))
+                        errors[$"Items[{i}].ProductName"] = new[] { "ProductName is required" };
                     if (item.UnitPrice <= 0)
                         errors[$"Items[{i}].UnitPrice"] = new[] { "UnitPrice must be greater than 0" };
                 }
@@ -38,9 +40,12 @@ namespace VerticalSliceDemo.Features.Orders
                 if (errors.Count > 0)
                     return Results.ValidationProblem(errors);
 
+                var orderId = Guid.NewGuid();
+
                 var items = request.Items.Select(i => new OrderItem
                 {
                     Id = Guid.NewGuid(),
+                    OrderId = orderId,
                     ProductName = i.ProductName,
                     Quantity = i.Quantity,
                     UnitPrice = i.UnitPrice
@@ -50,7 +55,7 @@ namespace VerticalSliceDemo.Features.Orders
 
                 var order = new Order
                 {
-                    Id = Guid.NewGuid(),
+                    Id = orderId,
                     CustomerName = request.CustomerName,
                     TotalAmount = total,
                     Status = OrderStatus.Pending,

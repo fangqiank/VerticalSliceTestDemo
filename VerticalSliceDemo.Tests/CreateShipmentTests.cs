@@ -1,11 +1,11 @@
-﻿using FluentAssertions;
+using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System.Net;
 using System.Net.Http.Json;
 using VerticalSliceDemo.Domains;
 using VerticalSliceDemo.Features.Orders;
-using VerticalSliceDemo.Features.Shipmemts;
+using VerticalSliceDemo.Features.Shipments;
 using VerticalSliceDemo.Infrastructure;
 
 namespace VerticalSliceDemo.Tests
