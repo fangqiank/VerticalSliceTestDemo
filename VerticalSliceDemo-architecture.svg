@@ -67,7 +67,7 @@
 
   <!-- Title Area -->
   <text x="600" y="44" text-anchor="middle" font-family="Arial, sans-serif" font-size="26" font-weight="bold" fill="#1e293b">VerticalSliceDemo 系统架构图</text>
-  <text x="600" y="70" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#64748b">Vertical Slice Architecture · .NET 10 · Minimal APIs · EF Core + PostgreSQL</text>
+  <text x="600" y="70" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#64748b">Vertical Slice Architecture · .NET 10 · Minimal APIs · EF Core + PostgreSQL · MCP Server</text>
 
   <!-- ============ CARDS (left → right flow) ============ -->
 
@@ -85,9 +85,9 @@
     </g>
     <g transform="translate(15,120)">
       <rect width="175" height="60" rx="6" fill="#ffffff" stroke="#bae6fd" stroke-width="1"/>
-      <text x="87.5" y="20" text-anchor="middle" font-family="monospace" font-size="11" font-weight="bold" fill="#0284c7">Scalar API UI</text>
-      <text x="87.5" y="36" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#64748b">/scalar</text>
-      <text x="87.5" y="50" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#94a3b8">Interactive Docs</text>
+      <text x="87.5" y="20" text-anchor="middle" font-family="monospace" font-size="11" font-weight="bold" fill="#0284c7">MCP Client · Claude</text>
+      <text x="87.5" y="36" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#64748b">POST /mcp</text>
+      <text x="87.5" y="50" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#94a3b8">Streamable HTTP</text>
     </g>
   </g>
 
@@ -98,16 +98,16 @@
     <rect x="0" y="20" width="205" height="15" fill="url(#purpleGradient)"/>
     <text x="102.5" y="23" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#ffffff">Features / 垂直切片</text>
     <g transform="translate(15,48)">
-      <rect width="175" height="60" rx="6" fill="#ffffff" stroke="#e9d5ff" stroke-width="1"/>
-      <text x="87.5" y="20" text-anchor="middle" font-family="monospace" font-size="11" font-weight="bold" fill="#7c3aed">Orders Slice</text>
-      <text x="87.5" y="36" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#64748b">CreateOrderEndpoint</text>
-      <text x="87.5" y="50" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#94a3b8">POST /orders</text>
+      <rect width="175" height="72" rx="6" fill="#ffffff" stroke="#e9d5ff" stroke-width="1"/>
+      <text x="87.5" y="18" text-anchor="middle" font-family="monospace" font-size="11" font-weight="bold" fill="#7c3aed">Orders Slice</text>
+      <text x="87.5" y="36" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#64748b">POST /orders · OrderService</text>
+      <text x="87.5" y="54" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#94a3b8">OrderTools (MCP) · 4 tools</text>
     </g>
-    <g transform="translate(15,120)">
-      <rect width="175" height="60" rx="6" fill="#ffffff" stroke="#e9d5ff" stroke-width="1"/>
-      <text x="87.5" y="20" text-anchor="middle" font-family="monospace" font-size="11" font-weight="bold" fill="#7c3aed">Shipments Slice</text>
-      <text x="87.5" y="36" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#64748b">CreateShipmentEndpoint</text>
-      <text x="87.5" y="50" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#94a3b8">POST /shipments</text>
+    <g transform="translate(15,128)">
+      <rect width="175" height="72" rx="6" fill="#ffffff" stroke="#e9d5ff" stroke-width="1"/>
+      <text x="87.5" y="18" text-anchor="middle" font-family="monospace" font-size="11" font-weight="bold" fill="#7c3aed">Shipments Slice</text>
+      <text x="87.5" y="36" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#64748b">POST /shipments · ShipmentService</text>
+      <text x="87.5" y="54" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#94a3b8">ShipmentTools (MCP) · 4 tools</text>
     </g>
   </g>
 
@@ -181,6 +181,11 @@
   <path d="M230 220 L258 220" class="flow-line-sky" stroke="#0ea5e9" stroke-width="3" fill="none" marker-end="url(#arrowSky)" stroke-linecap="round"/>
   <text x="244" y="210" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#0284c7">HTTP</text>
 
+  <!-- Client → API : MCP (purple, second entry point) -->
+  <path d="M230 270 L258 270" stroke="#e9d5ff" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <path d="M230 270 L258 270" class="flow-line-purple" stroke="#a855f7" stroke-width="3" fill="none" marker-end="url(#arrowPurple)" stroke-linecap="round"/>
+  <text x="244" y="260" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#7c3aed">MCP</text>
+
   <!-- API → Domain : invoke pricing (orange) -->
   <path d="M465 220 L493 220" stroke="#fed7aa" stroke-width="6" fill="none" stroke-linecap="round"/>
   <path d="M465 220 L493 220" class="flow-line-orange" stroke="#f97316" stroke-width="3" fill="none" marker-end="url(#arrowOrange)" stroke-linecap="round"/>
@@ -201,19 +206,19 @@
   <!-- Request Flow panel -->
   <g transform="translate(25,385)">
     <rect x="0" y="0" width="560" height="255" rx="10" fill="#f8fafc" stroke="#e2e8f0" stroke-width="2"/>
-    <text x="280" y="28" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b">请求流程 / Request Flow &#183; POST /orders</text>
+    <text x="280" y="28" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b">请求流程 / Request Flow &#183; POST /orders（HTTP 与 MCP 共用 service）</text>
 
     <g transform="translate(25,52)">
       <circle cx="8" cy="8" r="6" fill="#0ea5e9"/>
-      <text x="22" y="12" font-family="Arial, sans-serif" font-size="11" fill="#1e293b">1. 客户端发送 POST /orders（JSON 请求体）</text>
+      <text x="22" y="12" font-family="Arial, sans-serif" font-size="11" fill="#1e293b">1. 客户端发送请求（HTTP /orders 或 MCP CreateOrder 工具）</text>
     </g>
     <g transform="translate(25,85)">
       <circle cx="8" cy="8" r="6" fill="#a855f7"/>
-      <text x="22" y="12" font-family="Arial, sans-serif" font-size="11" fill="#1e293b">2. Endpoint 映射 DTO → OrderItem 列表</text>
+      <text x="22" y="12" font-family="Arial, sans-serif" font-size="11" fill="#1e293b">2. Endpoint / OrderTools 映射 DTO → 调用 OrderService</text>
     </g>
     <g transform="translate(25,118)">
       <circle cx="8" cy="8" r="6" fill="#f97316"/>
-      <text x="22" y="12" font-family="Arial, sans-serif" font-size="11" fill="#1e293b">3. OrderPricingService：小计 → 折扣 → +8% 税</text>
+      <text x="22" y="12" font-family="Arial, sans-serif" font-size="11" fill="#1e293b">3. OrderService：校验输入 + OrderPricingService（折扣 + 8% 税）</text>
     </g>
     <g transform="translate(25,151)">
       <circle cx="8" cy="8" r="6" fill="#3b82f6"/>
@@ -225,27 +230,29 @@
     </g>
     <g transform="translate(25,217)">
       <circle cx="8" cy="8" r="6" fill="#0ea5e9"/>
-      <text x="22" y="12" font-family="Arial, sans-serif" font-size="11" fill="#1e293b">6. 返回 201 Created + CreateOrderResponse</text>
+      <text x="22" y="12" font-family="Arial, sans-serif" font-size="11" fill="#1e293b">6. 返回 201 Created（HTTP）或工具结果字符串（MCP）</text>
     </g>
   </g>
 
-  <!-- DI & API Docs panel -->
+  <!-- DI & Endpoints panel -->
   <g transform="translate(610,385)">
     <rect x="0" y="0" width="565" height="255" rx="10" fill="#f8fafc" stroke="#e2e8f0" stroke-width="2"/>
-    <text x="282.5" y="28" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b">依赖注入 &amp; API 文档 / DI &amp; API Docs</text>
+    <text x="282.5" y="28" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b">依赖注入 &amp; 入口 / DI &amp; Endpoints</text>
 
-    <text x="20" y="54" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#7c3aed">DI 容器 · Program.cs</text>
-    <text x="30" y="74" font-family="monospace" font-size="11" fill="#334155">builder.Services.AddOpenApi();</text>
-    <text x="30" y="92" font-family="monospace" font-size="11" fill="#334155">AddDbContext&lt;AppDbContext&gt;()  // Npgsql</text>
-    <text x="30" y="110" font-family="monospace" font-size="11" fill="#334155">AddScoped&lt;OrderPricingService&gt;()</text>
+    <text x="20" y="52" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#7c3aed">DI 容器 · Program.cs</text>
+    <text x="30" y="70" font-family="monospace" font-size="11" fill="#334155">AddOpenApi();  AddDbContext&lt;AppDbContext&gt;()</text>
+    <text x="30" y="88" font-family="monospace" font-size="11" fill="#334155">AddScoped&lt;OrderService / ShipmentService&gt;()</text>
+    <text x="30" y="106" font-family="monospace" font-size="11" fill="#334155">AddMcpServer().WithHttpTransport()  // /mcp</text>
 
-    <text x="20" y="140" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#0284c7">API 文档 · API Documentation</text>
-    <text x="30" y="160" font-family="monospace" font-size="11" fill="#334155">/openapi/v1.json  (Development only)</text>
-    <text x="30" y="178" font-family="monospace" font-size="11" fill="#334155">/scalar  →  MapScalarApiReference()</text>
+    <text x="20" y="132" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#0284c7">HTTP 入口 · HTTP Endpoints</text>
+    <text x="30" y="150" font-family="monospace" font-size="11" fill="#334155">POST /orders · POST /shipments · /scalar</text>
 
-    <text x="20" y="206" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#16a34a">技术栈 · Tech Stack</text>
-    <text x="30" y="226" font-family="Arial, sans-serif" font-size="11" fill="#334155">.NET 10 · Minimal APIs · EF Core 10 · Npgsql · PostgreSQL 17</text>
-    <text x="30" y="243" font-family="Arial, sans-serif" font-size="10" fill="#64748b">连接串 ConnectionStrings:Database（user secrets / env，不在 appsettings 中）</text>
+    <text x="20" y="176" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#a855f7">MCP 入口 · /mcp → MapMcp()</text>
+    <text x="30" y="194" font-family="Arial, sans-serif" font-size="10" fill="#334155">Orders: Create · Get · List · Cancel</text>
+    <text x="30" y="208" font-family="Arial, sans-serif" font-size="10" fill="#334155">Shipments: Create · Get · List · MarkShipped</text>
+
+    <text x="20" y="232" font-family="Arial, sans-serif" font-size="10" fill="#64748b">.NET 10 · EF Core 10 · Npgsql · PostgreSQL 17 · ModelContextProtocol.AspNetCore</text>
+    <text x="30" y="246" font-family="Arial, sans-serif" font-size="9" fill="#94a3b8">连接串 ConnectionStrings:Database（user secrets / env，不在 appsettings 中）</text>
   </g>
 
   <!-- Legend -->
@@ -269,7 +276,7 @@
     <rect x="0" y="0" width="565" height="60" rx="8" fill="#f8fafc" stroke="#e2e8f0" stroke-width="2"/>
     <text x="282.5" y="20" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#64748b">架构约束 / Architecture Rules</text>
     <text x="20" y="40" font-family="Arial, sans-serif" font-size="10" fill="#1e293b">• 领域层不依赖数据访问（Domain → 无 DB）</text>
-    <text x="20" y="54" font-family="Arial, sans-serif" font-size="10" fill="#1e293b">• 每个 Feature 切片自包含：DTO + Endpoint + 聚合器（Map{Feature}Endpoints）</text>
+    <text x="20" y="54" font-family="Arial, sans-serif" font-size="10" fill="#1e293b">• HTTP 端点与 MCP 工具共享 OrderService / ShipmentService（单一业务逻辑）</text>
   </g>
 
 </svg>
