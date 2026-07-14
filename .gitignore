@@ -20,6 +20,7 @@ TestResults/
 
 ## User-specific / local only
 CLAUDE.md
+.mcp.json
 *.http.local
 
 ## OS files

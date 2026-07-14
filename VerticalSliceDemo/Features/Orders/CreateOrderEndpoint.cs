@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using VerticalSliceDemo.Domains;
-using VerticalSliceDemo.Infrastructure;
 
 namespace VerticalSliceDemo.Features.Orders
 {
@@ -10,64 +9,18 @@ namespace VerticalSliceDemo.Features.Orders
         {
             app.MapPost("/orders", async (
                 [FromBody] CreateOrderRequest request,
-                AppDbContext db,
-                OrderPricingService pricingService) =>
+                OrderService service) =>
             {
-                if (request.Items.Count == 0)
+                try
                 {
-                    return Results.ValidationProblem(new Dictionary<string, string[]>
-                    {
-                        { "Items", new[] { "At least one item is required" } }
-                    });
+                    var order = await service.CreateAsync(request);
+                    return Results.Created($"/orders/{order.Id}", new CreateOrderResponse(
+                        order.Id, order.CustomerName, order.TotalAmount, order.Status));
                 }
-
-                var errors = new Dictionary<string, string[]>();
-
-                if (string.IsNullOrWhiteSpace(request.CustomerName))
-                    errors["CustomerName"] = new[] { "CustomerName is required" };
-
-                for (var i = 0; i < request.Items.Count; i++)
+                catch (Exception ex)
                 {
-                    var item = request.Items[i];
-                    if (item.Quantity <= 0)
-                        errors[$"Items[{i}].Quantity"] = new[] { "Quantity must be greater than 0" };
-                    if (string.IsNullOrWhiteSpace(item.ProductName))
-                        errors[$"Items[{i}].ProductName"] = new[] { "ProductName is required" };
-                    if (item.UnitPrice <= 0)
-                        errors[$"Items[{i}].UnitPrice"] = new[] { "UnitPrice must be greater than 0" };
+                    return ProblemResults.Map(ex);
                 }
-
-                if (errors.Count > 0)
-                    return Results.ValidationProblem(errors);
-
-                var orderId = Guid.NewGuid();
-
-                var items = request.Items.Select(i => new OrderItem
-                {
-                    Id = Guid.NewGuid(),
-                    OrderId = orderId,
-                    ProductName = i.ProductName,
-                    Quantity = i.Quantity,
-                    UnitPrice = i.UnitPrice
-                }).ToList();
-
-                var total = pricingService.CalculateTotalPrice(items, request.IsPremiumCustomer);
-
-                var order = new Order
-                {
-                    Id = orderId,
-                    CustomerName = request.CustomerName,
-                    TotalAmount = total,
-                    Status = OrderStatus.Pending,
-                    CreatedAt = DateTime.UtcNow,
-                    Items = items
-                };
-
-                db.Orders.Add(order);
-                await db.SaveChangesAsync();
-
-                return Results.Created($"/orders/{order.Id}", new CreateOrderResponse(
-                    order.Id, order.CustomerName, order.TotalAmount, order.Status));
             });
         }
     }
